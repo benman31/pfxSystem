@@ -3,16 +3,14 @@
 #include <glm/glm.hpp>
 #include "../wolf/wolf.h"
 #include "../samplefw/SampleRunner.h"
-#include "sampleShadowMaps.h"
-#include "sampleProjectionShadows.h"
+#include "sampleSkinning.h"
 
 class Week2: public wolf::App
 {
 public:
     Week2() : wolf::App("Week 4")
     {
-        m_sampleRunner.addSample(new SampleProjectionShadows(this));
-        m_sampleRunner.addSample(new SampleShadowMaps(this));
+        m_sampleRunner.addSample(new SampleSkinning(this));
     }
 
     ~Week2()

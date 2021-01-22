@@ -5,11 +5,11 @@
 #include "../samplefw/OrbitCamera.h"
 #include "../samplefw/Sphere.h"
 
-class SampleProjectionShadows: public Sample
+class SampleSkinning: public Sample
 {
 public:
-    SampleProjectionShadows(wolf::App* pApp) : Sample(pApp,"Projection Shadows") {}
-    ~SampleProjectionShadows();
+    SampleSkinning(wolf::App* pApp) : Sample(pApp,"Skinning") {}
+    ~SampleSkinning();
 
     void init() override;
     void update(float dt) override;
@@ -19,6 +19,7 @@ private:
     wolf::Model* m_pFloor = nullptr;
     wolf::Model* m_pModel = nullptr;
     wolf::Material* m_pMat = nullptr;
+    wolf::Material* m_pSkinningMat = nullptr;
     wolf::Texture* m_pTex = nullptr;
     Grid3D* m_pGrid = nullptr;
     OrbitCamera* m_pOrbitCam = nullptr;
