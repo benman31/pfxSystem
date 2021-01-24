@@ -98,7 +98,7 @@ void SampleSkinning::update(float dt)
     m_pOrbitCam->update(dt);
     m_pGrid->update(dt);
 
-    m_timer += dt;
+    // m_timer += dt;
 
     float sinTheta = sin(m_timer);
     float cosTheta = cos(m_timer);
@@ -106,6 +106,8 @@ void SampleSkinning::update(float dt)
 
     m_lightPos = glm::vec3(32.0f * cosTheta, height, 32.0f * sinTheta);
     m_pLightDbg->SetPosition(m_lightPos);
+
+    m_pModel->Update(dt);
 }
 
 void SampleSkinning::render(int width, int height)
