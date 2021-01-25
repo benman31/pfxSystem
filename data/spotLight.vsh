@@ -14,7 +14,7 @@ out vec2 v_uv1;
 void main()
 {
     gl_Position = projection * view * world * a_position;
-    v_uv1 = a_uv1 * 4.0; // add some tiling
+    v_uv1 = a_uv1;
 	v_pos = (world * a_position).xyz;
     v_normal = worldIT * vec4(a_normal, 0.0);
 }

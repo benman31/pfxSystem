@@ -21,12 +21,9 @@ private:
     wolf::Material* m_pMat = nullptr;
     wolf::Material* m_pSkinningMat = nullptr;
     wolf::Texture* m_pTex = nullptr;
-    Grid3D* m_pGrid = nullptr;
     OrbitCamera* m_pOrbitCam = nullptr;
-    float m_rot = 0.0f;
-    float m_timer = 0.0f;
-    glm::vec3 m_lightPos;
-    Sphere* m_pLightDbg = nullptr;
-    bool m_swapKeyDown = false;
+    Sphere* m_pLightDbg[4] = { nullptr, nullptr, nullptr, nullptr };
     int m_currAnim = 0;
+    float m_timer = 0.0f;
+    bool m_showLightSpheres = false;
 };
