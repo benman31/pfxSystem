@@ -1,6 +1,6 @@
 #include "sampleSkinning.h"
 
-const std::vector<std::string> g_animClips = {
+const std::vector<std::string> ANIM_CLIPS = {
     "idle",
     "walk",
     "attack",
@@ -100,7 +100,7 @@ void SampleSkinning::init()
 
         SingleMaterialProvider matProvider(SKINNING_MATNAME);
         m_pModel = new wolf::SkinnedModel("data/skeleton.json", matProvider);
-        m_pModel->PlayClip(g_animClips[0]);
+        m_pModel->PlayClip(ANIM_CLIPS[0]);
 
         glm::vec3 min = m_pModel->getAABBMin();
         glm::vec3 max = m_pModel->getAABBMax();
@@ -130,8 +130,8 @@ void SampleSkinning::update(float dt)
 {
     if(m_pApp->isKeyJustDown('1'))
     {
-        m_currAnim = (m_currAnim + 1) % g_animClips.size();
-        m_pModel->PlayClip(g_animClips[m_currAnim]);
+        m_currAnim = (m_currAnim + 1) % ANIM_CLIPS.size();
+        m_pModel->PlayClip(ANIM_CLIPS[m_currAnim]);
     }
 
     if(m_pApp->isKeyJustDown('2'))
