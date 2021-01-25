@@ -17,7 +17,7 @@ public:
 
 private:
     wolf::Model* m_pFloor = nullptr;
-    wolf::Model* m_pModel = nullptr;
+    wolf::SkinnedModel* m_pModel = nullptr;
     wolf::Material* m_pMat = nullptr;
     wolf::Material* m_pSkinningMat = nullptr;
     wolf::Texture* m_pTex = nullptr;
@@ -27,4 +27,6 @@ private:
     float m_timer = 0.0f;
     glm::vec3 m_lightPos;
     Sphere* m_pLightDbg = nullptr;
+    bool m_swapKeyDown = false;
+    int m_currAnim = 0;
 };

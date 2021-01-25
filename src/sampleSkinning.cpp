@@ -1,5 +1,18 @@
 #include "sampleSkinning.h"
 
+const std::vector<std::string> g_animClips = {
+    "idle",
+    "walk",
+    "attack",
+    "attack2",
+    "attack3",
+    "spawn",
+    "defeat",
+    "victory",
+    "summon",
+    "death"
+};
+
 const glm::vec3 LIGHT_COLOR(1.0f,1.0f,1.0f);
 const glm::vec3 LIGHT_POS(20.0f,20.0f,0.0f);
 
@@ -67,7 +80,8 @@ void SampleSkinning::init()
         m_pSkinningMat->SetUniform("u_diffuseTex", 0);
 
         SingleMaterialProvider matProvider(SKINNING_MATNAME);
-        m_pModel = new wolf::Model("data/myskeleton.fbx", matProvider);
+        m_pModel = new wolf::SkinnedModel("data/skeleton.json", matProvider);
+        m_pModel->PlayClip(g_animClips[0]);
 
         glm::vec3 min = m_pModel->getAABBMin();
         glm::vec3 max = m_pModel->getAABBMax();
@@ -108,6 +122,18 @@ void SampleSkinning::update(float dt)
     m_pLightDbg->SetPosition(m_lightPos);
 
     m_pModel->Update(dt);
+
+    if(m_pApp->isKeyDown('1'))
+        m_swapKeyDown = true;
+    else
+    {
+        if(m_swapKeyDown)
+        {
+            m_currAnim = (m_currAnim + 1) % g_animClips.size();
+            m_pModel->PlayClip(g_animClips[m_currAnim]);
+            m_swapKeyDown = false;
+        }
+    }
 }
 
 void SampleSkinning::render(int width, int height)
