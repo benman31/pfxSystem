@@ -83,7 +83,7 @@ void SampleSkinning::init()
 
         const std::string MATNAME = "SampleSkinning";
         m_pMat = wolf::MaterialManager::CreateMaterial(MATNAME);
-        m_pMat->SetProgram("data/spotLight.vsh", "data/spotLight.fsh");
+        m_pMat->SetProgram("data/standard.vsh", "data/standard.fsh");
         m_pMat->SetUniform("u_specularColor", glm::vec3(1.0f,1.0f,1.0f));
         m_pMat->SetUniform("u_shininess", 200.0f);
         m_pMat->SetUniform("u_diffuseTex", 0);
