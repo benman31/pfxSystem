@@ -70,7 +70,7 @@ void SetLightsOnMaterial(wolf::Material* pMat)
         pMat->SetUniform(strBuff, glm::vec3(0.0f,0.1f,0.0f));
     }
 
-    pMat->SetUniform("u_ambientLight", glm::vec3(0.2f,0.2f,0.2f));
+    pMat->SetUniform("u_ambientLight", glm::vec3(0.1f,0.1f,0.15f));
 }
 
 void SampleSkinning::init()
@@ -128,9 +128,6 @@ void SampleSkinning::init()
 
 void SampleSkinning::update(float dt) 
 {
-    m_pOrbitCam->update(dt);
-    m_pModel->Update(dt);
-
     if(m_pApp->isKeyJustDown('1'))
     {
         m_currAnim = (m_currAnim + 1) % g_animClips.size();
@@ -139,11 +136,14 @@ void SampleSkinning::update(float dt)
 
     if(m_pApp->isKeyJustDown('2'))
         m_showLightSpheres = !m_showLightSpheres;
+
+    m_pModel->Update(dt);
+    m_pOrbitCam->update(dt);
 }
 
 void SampleSkinning::render(int width, int height)
 {
-	glClearColor(0.3f, 0.3f, 0.3f, 1.0);
+	glClearColor(0.1f, 0.1f, 0.12f, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glm::mat4 mProj = m_pOrbitCam->getProjMatrix(width, height);

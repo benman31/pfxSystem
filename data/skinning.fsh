@@ -57,6 +57,10 @@ vec3 calc_lighting_point(vec4 lightPosRange, vec3 lightColor, vec3 lightAttenuat
 
 void main()
 {
+	// Hiding anything below the y=0 plane (helps with the spawning anims and shows an interesting technique)
+	if(v_pos.y < 0.0)
+		discard;
+
     vec3 diffuseMat = v_color.rgb;
 	vec3 n = normalize( v_normal.xyz );
 
