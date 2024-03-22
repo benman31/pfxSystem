@@ -1,26 +1,13 @@
-#include "sampleSkinning.h"
-
-const std::vector<std::string> ANIM_CLIPS = {
-    "idle",
-    "walk",
-    "attack",
-    "attack2",
-    "attack3",
-    "spawn",
-    "defeat",
-    "victory",
-    "summon",
-    "death"
-};
+#include "Assignment3.h"
 
 const std::vector<glm::vec3> LIGHT_COLOR = {
-    glm::vec3(0.9f,0.8f,0.8f),
+    glm::vec3(0.8f,0.9f,0.8f),
     glm::vec3(0.9f,0.9f,0.8f),
     glm::vec3(0.8f,0.9f,0.9f),
 };
 
 const std::vector<glm::vec3> LIGHT_POS = {
-    glm::vec3(20.0f,30.0f,20.0f),
+    glm::vec3(0.0f,30.0f,0.0f),
     glm::vec3(-20.0f,30.0f,20.0f),
     glm::vec3(-20.0f,30.0f,-20.0f),
 };
@@ -43,12 +30,11 @@ private:
     std::string m_matName;
 };
 
-SampleSkinning::~SampleSkinning()
+Assignment3::~Assignment3()
 {
-	printf("Destroying Skinning Sample\n");
+	printf("Destroying Particle Assignment Sample\n");
     wolf::MaterialManager::DestroyMaterial(m_pMat);
     wolf::TextureManager::DestroyTexture(m_pTex);
-    delete m_pModel;
     delete m_pOrbitCam;
 
     for(int i = 0; i < LIGHT_POS.size(); ++i)
@@ -73,44 +59,28 @@ void SetLightsOnMaterial(wolf::Material* pMat)
     pMat->SetUniform("u_ambientLight", glm::vec3(0.1f,0.1f,0.15f));
 }
 
-void SampleSkinning::init()
+void Assignment3::init()
 {
-	// Only init if not already done
-    if(!m_pModel)
+
+    if(!m_pFloor)
     {
         m_pTex = wolf::TextureManager::CreateTexture("data/diffuseGray.png");
         m_pTex->SetWrapMode(wolf::Texture::WM_Repeat);
 
-        const std::string MATNAME = "SampleSkinning";
+        const std::string MATNAME = "Floor";
         m_pMat = wolf::MaterialManager::CreateMaterial(MATNAME);
         m_pMat->SetProgram("data/standard.vsh", "data/standard.fsh");
         m_pMat->SetUniform("u_specularColor", glm::vec3(1.0f,1.0f,1.0f));
-        m_pMat->SetUniform("u_shininess", 200.0f);
+        m_pMat->SetUniform("u_shininess", 100.0f);
         m_pMat->SetUniform("u_diffuseTex", 0);
 
-        const std::string SKINNING_MATNAME = "SampleSkinning_skinning";
-        m_pSkinningMat = wolf::MaterialManager::CreateMaterial(SKINNING_MATNAME);
-        m_pSkinningMat->SetProgram("data/skinning.vsh", "data/skinning.fsh");
-        m_pSkinningMat->SetUniform("u_specularColor", glm::vec3(1.0f,1.0f,1.0f));
-        m_pSkinningMat->SetUniform("u_shininess", 20.0f);
-        m_pSkinningMat->SetUniform("u_diffuseTex", 0);
-
         SetLightsOnMaterial(m_pMat);
-        SetLightsOnMaterial(m_pSkinningMat);
-
-        SingleMaterialProvider matProvider(SKINNING_MATNAME);
-        m_pModel = new wolf::SkinnedModel("data/skeleton.json", matProvider);
-        m_pModel->PlayClip(ANIM_CLIPS[0]);
-
-        glm::vec3 min = m_pModel->getAABBMin();
-        glm::vec3 max = m_pModel->getAABBMax();
-        glm::vec3 center = m_pModel->getAABBCenter();
 
         SingleMaterialProvider matProviderFloor(MATNAME);
         m_pFloor = new wolf::Model("data/plane.fbx", matProviderFloor);
-        min = m_pFloor->getAABBMin();
-        max = m_pFloor->getAABBMax();
-        center = m_pFloor->getAABBCenter();
+        glm::vec3 min = m_pFloor->getAABBMin();
+        glm::vec3 max = m_pFloor->getAABBMax();
+        glm::vec3 center = m_pFloor->getAABBCenter();
 
         m_pOrbitCam = new OrbitCamera(m_pApp);
         m_pOrbitCam->focusOn(min,max);
@@ -121,27 +91,38 @@ void SampleSkinning::init()
             m_pLightDbg[i]->SetColor(LIGHT_COLOR[i]);
             m_pLightDbg[i]->SetPosition(LIGHT_POS[i]);
         }
+
+        m_pFireEffect = new Effect("data/smokey-fire.effect");
+        m_pFireEffect->Init();
+        m_pConfettiEffect = new Effect("data/confetti-pop.effect");
+        m_pConfettiEffect->Init();
     }
 
-    printf("Successfully initialized Skinning Sample\n");
+    printf("Successfully initialized Particle Assignment Sample\n");
 }
 
-void SampleSkinning::update(float dt) 
+void Assignment3::update(float dt) 
 {
-    if(m_pApp->isKeyJustDown('1'))
-    {
-        m_currAnim = (m_currAnim + 1) % ANIM_CLIPS.size();
-        m_pModel->PlayClip(ANIM_CLIPS[m_currAnim]);
-    }
 
     if(m_pApp->isKeyJustDown('2'))
         m_showLightSpheres = !m_showLightSpheres;
+    
+    if(m_pApp->isKeyJustDown(' '))
+        m_bSwapEffects = !m_bSwapEffects;
 
-    m_pModel->Update(dt);
     m_pOrbitCam->update(dt);
+    
+    if (m_bSwapEffects)
+    {
+        m_pConfettiEffect->Update(dt);
+    }
+    else
+    {
+        m_pFireEffect->Update(dt);
+    }
 }
 
-void SampleSkinning::render(int width, int height)
+void Assignment3::render(int width, int height)
 {
 	glClearColor(0.1f, 0.1f, 0.12f, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -151,11 +132,9 @@ void SampleSkinning::render(int width, int height)
 	glm::mat4 mWorld = glm::rotate(glm::mat4(1.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
     m_pMat->SetUniform("u_viewPos", m_pOrbitCam->getViewPosition());
-    m_pSkinningMat->SetUniform("u_viewPos", m_pOrbitCam->getViewPosition());
 
     m_pTex->Bind();
     m_pFloor->Render(mWorld, mView, mProj);
-    m_pModel->Render(mWorld * glm::scale(glm::mat4(1.0f), glm::vec3(0.25f,0.25f,0.25f)), mView, mProj);
 
     if(m_showLightSpheres)
     {
@@ -164,5 +143,13 @@ void SampleSkinning::render(int width, int height)
             m_pLightDbg[i]->Render(mWorld,mView,mProj);
         }
     }
+    if (m_bSwapEffects)
+    {
+        m_pConfettiEffect->Render(mView, mProj);
+    }
+    else 
+    {
+        m_pFireEffect->Render(mView, mProj);
+    }
+    
 }
-

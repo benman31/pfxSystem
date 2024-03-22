@@ -1,0 +1,3 @@
+<effect name="confetti-pop">
+ <emitter file="data/confetti.emitter" offsetX="0" offsetY="15" offsetZ="0"/>
+</effect>

@@ -3,14 +3,14 @@
 #include <glm/glm.hpp>
 #include "../wolf/wolf.h"
 #include "../samplefw/SampleRunner.h"
-#include "sampleSkinning.h"
+#include "Assignment3.h"
 
 class Week2: public wolf::App
 {
 public:
     Week2() : wolf::App("Week 4")
     {
-        m_sampleRunner.addSample(new SampleSkinning(this));
+        m_sampleRunner.addSample(new Assignment3(this));
     }
 
     ~Week2()

@@ -1,0 +1,23 @@
+<emitter name="smoke" num_particles="1000" duration="-1" type="continuous">
+    <spawn_property name="birthrate" type="random" min="16" max="24" />
+    <spawn_property name="fade" type="random" min="0.4" max="0.6" />
+    <spawn_property name="lifetime" type="constant" value="10.0f" />
+    <spawn_property name="velocity" type="random" xMin="-4" yMin="1" zMin="-4" xMax="0" yMax="10" zMax="0" />
+    <spawn_property name="color" type="constant" r="128" g="128" b="128" a="128"/>
+    <spawn_property name="size" type="random" min="0.5" max="5" />
+
+    <affector type="scale">
+        <property start="0.8" end="10"/>
+    </affector>
+
+    <affector type="addVelocity">
+        <property mode="random" xMin="5" yMin="5" zMin="5" xMax="7" yMax="7" zMax="7" />
+    </affector>
+
+    <affector type="fade">
+        <property type="fadeOut" />
+    </affector>
+</emitter>
+
+<!-- <affector type="gravity">
+    </affector>-->

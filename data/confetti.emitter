@@ -1,0 +1,20 @@
+<emitter name="confetti" num_particles="1000" duration="-1" type="burst" repeat="true" mode="random" min="5" max="10">
+    <spawn_property name="burstSpawns" type="random" min="500" max="900" />
+    <spawn_property name="fade" type="constant" value="1" />
+    <spawn_property name="lifetime" type="random" min="5" max="10"/>
+    <spawn_property name="velocity" type="random" xMin="-15" yMin="5" zMin="-15" xMax="25" yMax="15" zMax="15" />
+    <spawn_property name="color" type="random" rMin="0" gMin="0" bMin="0" aMin="255" rMax="255" gMax="255" bMax="255" aMax="255"/>
+    <spawn_property name="size" type="random" min="0.1" max="0.3" />
+
+    <affector type="scale">
+        <property start="0.8" end="1"/>
+    </affector>
+
+    <affector type="addVelocity">
+        <property mode="random" xMin="-2" yMin="0" zMin="-2" xMax="7" yMax="1" zMax="7" />
+    </affector>
+
+    <affector type="gravity" />
+
+</emitter>
+

@@ -1,0 +1,19 @@
+<emitter name="fire" num_particles="4000" duration="-1" type="continuous">
+    <spawn_property name="birthrate" type="random" min="200" max="500" />
+    <spawn_property name="lifetime" type="constant" value="4.0f" />
+    <spawn_property name="velocity" type="random" xMin="-1" yMin="0" zMin="-1" xMax="1" yMax="2" zMax="1" />
+    <spawn_property name="color" type="random" rMin="255" gMin="0" bMin="0" aMin="128" rMax="255" gMax="32" bMax="0" aMax="255"/>
+    <spawn_property name="size" type="random" min="0.1" max="0.5" />
+
+    <affector type="scale">
+        <property start="5" end="1"/>
+    </affector>
+
+    <affector type="addVelocity">
+        <property mode="random" xMin="-1" yMin="1" zMin="-1" xMax="1" yMax="2" zMax="1" />
+    </affector>
+
+    <affector type="fade">
+        <property type="fadeOut" />
+    </affector>
+</emitter>

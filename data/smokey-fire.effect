@@ -1,0 +1,4 @@
+<effect name="smokey_fire">
+ <emitter file="data/fire.emitter" offsetX="0" offsetY="1" offsetZ="0"/>
+ <emitter file="data/smoke.emitter" offsetX="0" offsetY="12" offsetZ="0"/>
+</effect>
