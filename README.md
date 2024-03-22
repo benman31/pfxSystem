@@ -1,9 +1,12 @@
 # About the project
-A simple pfx system written in C++ and OpenGL using a mini-engine / 3D framework by UPEI instructor and former Technical Director at Other Ocean, Gordon Wood
+A simple pfx system written in C++ and OpenGL using a mini-engine / 3D framework called **wolf** by UPEI instructor and former Technical Director at Other Ocean, Gordon Wood
 
 This project was created as part of a university graphics programming assignment, where the focus was on using an efficient data structure to render a large volume of particles in as few draw calls as possible.
 
-A simple XML-based text interface was also created to enable the creation and design of new particle effects, exemplified here https://github.com/benman31/pfxSystem/blob/main/data/smokey-fire.effect and here https://github.com/benman31/pfxSystem/blob/main/data/smoke.emitter
+A simple XML-based text interface was also created to enable the creation and design of new particle effects, exemplified [here](https://github.com/benman31/pfxSystem/blob/main/data/smokey-fire.effect)
+and [here](https://github.com/benman31/pfxSystem/blob/main/data/smoke.emitter)
+
+I would like to return to this at some point to clean up some of the unused files, build a UI Editor that writes to the XML files for ease of use, and also start to replace the original wolf dependancies with my own code.
 
 # Install Instructions DISCLAIMER: MILEAGE MAY VARY, INSTRUCTIONS BASED ON STARTER CODE BY GORDON WOOD 
 ## Windows
