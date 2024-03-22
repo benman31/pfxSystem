@@ -1,3 +1,10 @@
+# About the project
+A simple pfx system written in C++ and OpenGL using a mini-engine / 3D framework by UPEI instructor and former Technical Director at Other Ocean, Gordon Wood
+
+This project was created as part of a university graphics programming assignment, where the focus was on using an efficient data structure to render a large volume of particles in as few draw calls as possible.
+
+A simple XML-based text interface was also created to enable the creation and design of new particle effects, exemplified here https://github.com/benman31/pfxSystem/blob/main/data/smokey-fire.effect and here https://github.com/benman31/pfxSystem/blob/main/data/smoke.emitter
+
 # Install Instructions DISCLAIMER: MILEAGE MAY VARY, INSTRUCTIONS BASED ON STARTER CODE BY GORDON WOOD 
 ## Windows
 ### Setting up Dev Environment
