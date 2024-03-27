@@ -1,5 +1,8 @@
 
 # About the project
+
+**If you're here to take a look at some code I've written for recruitment purposes, start with `src/Assignment3.h` and `src/Assignment3.cc` and trace through the `include`s to find the rest of the relevent files.**<br/>
+
 A simple pfx system written in C++ and OpenGL using a mini-engine / 3D framework called **wolf** by UPEI instructor and former Technical Director at Other Ocean, Gordon Wood
 
 This project was created as part of a university graphics programming assignment, where the focus was on using an efficient data structure to render a large volume of particles in as few draw calls as possible.
@@ -12,7 +15,8 @@ I would like to return to this at some point to clean up some of the unused file
 ![A smokey fire created with the PFX editor](https://raw.githubusercontent.com/benman31/pfxSystem/9a9fc06ea024efbd0915e3152f67ad6cb9aabb5e/01aabb2e-0c60-44d8-83a4-8699635af976.gif)
 
 
-# Install Instructions DISCLAIMER: MILEAGE MAY VARY, INSTRUCTIONS BASED ON STARTER CODE BY GORDON WOOD 
+# Install Instructions<br/>
+**DISCLAIMER: MILEAGE MAY VARY, INSTRUCTIONS ARE BASED ON STARTER CODE BY THE INSTRUCTOR GORDON WOOD** <br/>
 ## Windows
 ### Setting up Dev Environment
 If dev environment not set up yet follow these steps:
